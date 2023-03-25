@@ -22,9 +22,9 @@ public class SecPacienteServiceImpl implements SecPacienteService {
     }
 
     @Override
-    public SecPaciente save(SecPaciente SecPaciente){
-        log.debug("Request to insert sec_paciente: {}", SecPaciente);
-        return secPacienteDAO.insert(SecPaciente);
+    public SecPaciente save(SecPaciente secPaciente){
+        log.debug("Request to insert sec_paciente: {}", secPaciente);
+        return secPacienteDAO.insert(secPaciente);
     }
 
     @Override

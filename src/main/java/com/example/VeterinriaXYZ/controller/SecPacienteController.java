@@ -19,7 +19,7 @@ public class SecPacienteController {
 
     private Logger log = LoggerFactory.getLogger(SecPacienteController.class);
 
-    private static final String ENITY_NAME = "SecPaciente";
+    private static final String ENITY_NAME = "Sec_Paciente";
 
     private final SecPacienteService secPacienteService;
 

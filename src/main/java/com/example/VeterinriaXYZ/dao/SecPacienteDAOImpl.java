@@ -13,13 +13,11 @@ import java.util.List;
 @Transactional
 public class SecPacienteDAOImpl implements SecPacienteDAO{
 
-    private static final String INSERT = "INSERT INTO sec_paciente(nombre,especie , raza, nacimiento, tipoidprop, idprop, nombreprop, ciudad," +
-            "direccion, telefono, fecharegistro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+    private static final String INSERT = "INSERT INTO sec_paciente(nombre,especie,raza,idper,nacimiento,fecharegistro) VALUES (?, ?, ?, ?, ?, ?)";
 
-    private static final String UPDATE = "UPDATE sec_paciente SET nombre= ?, especie= ?, raza= ?, nacimiento= ?, tipoidprop = ?, idprop= ?, nombreprop= ?, ciudad= ?," +
-            " direccion= ?, telefono= ?, fecharegistro= ? WHERE id= ?";
 
-    private static final String SELECT ="SELECT id ,nombre,especie , raza, nacimiento,tipoidprop, idprop, nombreprop, ciudad,direccion, telefono, fecharegistro FROM sec_paciente ";
+    private static final String UPDATE = "UPDATE sec_paciente SET nombre= ?, especie= ?, raza= ?, idper= ? ,nacimiento= ?, fecharegistro = ? WHERE id= ?";
+    private static final String SELECT ="SELECT * FROM sec_paciente ";
 
     private static final String SELECTBYID = SELECT + " WHERE id= ? ";
 
@@ -43,13 +41,8 @@ public class SecPacienteDAOImpl implements SecPacienteDAO{
                 entity.getNombre(),
                 entity.getEspecie(),
                 entity.getRaza(),
+                entity.getIdPer(),
                 entity.getNacimiento(),
-                entity.getTipoIdProp(),
-                entity.getIdProp(),
-                entity.getNombreProp(),
-                entity.getCiudad(),
-                entity.getDireccion(),
-                entity.getTelefono(),
                 entity.getFechaRegistro());
         return entity;
     }
@@ -61,13 +54,8 @@ public class SecPacienteDAOImpl implements SecPacienteDAO{
                 entity.getNombre(),
                 entity.getEspecie(),
                 entity.getRaza(),
+                entity.getIdPer(),
                 entity.getNacimiento(),
-                entity.getTipoIdProp(),
-                entity.getIdProp(),
-                entity.getNombreProp(),
-                entity.getCiudad(),
-                entity.getDireccion(),
-                entity.getTelefono(),
                 entity.getFechaRegistro());
         return entity;
     }

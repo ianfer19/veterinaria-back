@@ -22,15 +22,11 @@ public class SecPaciente implements Serializable {
     private String especie;
     private String raza;
 
+
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate nacimiento;
 
-    private String tipoIdProp;
-    private int idProp;
-    private String nombreProp;
-    private String ciudad;
-    private String direccion;
-    private Long telefono;
+    private int idPer;
 
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate fechaRegistro;
@@ -42,12 +38,7 @@ public class SecPaciente implements Serializable {
         especie = rs.getString("especie");
         raza = rs.getString("raza");
         nacimiento = UtilDate.getLocalDate(rs.getDate("nacimiento"));
-        tipoIdProp = rs.getString("tipoidprop");
-        idProp = rs.getInt("idprop");
-        nombreProp= rs.getString("nombreprop");
-        ciudad= rs.getString("ciudad");
-        direccion= rs.getString("direccion");
-        telefono= rs.getLong("telefono");
+        idPer = rs.getInt("idper");
         fechaRegistro = UtilDate.getLocalDate(rs.getDate("fechaRegistro"));
     }
 }
