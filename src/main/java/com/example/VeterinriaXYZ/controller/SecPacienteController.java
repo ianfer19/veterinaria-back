@@ -55,10 +55,22 @@ public class SecPacienteController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/paciente/{nmid}")
+    @GetMapping("/paciente/{id}")
     public ResponseEntity<ResponseMessage<SecPaciente>> getSec_usuario(@PathVariable int id) throws ApplicationCustomException {
         log.debug("REST request to get sec_paciente : {}", id);
         SecPaciente secPaciente= secPacienteService.findOne(id);
+        if(secPaciente == null){
+            throw new ApplicationCustomException(MessagesConstants.ENTITY_ALREADY_EXISTS_CODE, String.format(MessagesConstants.ENTITY_NOT_EXISTS, ENITY_NAME));
+        }else {
+            return ResponseEntity.ok(new ResponseMessage<>(0,null,secPaciente));
+        }
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/paciente-persona/{id}")
+    public ResponseEntity<ResponseMessage<SecPaciente>> getSec_usuarioPersona(@PathVariable int id) throws ApplicationCustomException {
+        log.debug("REST request to get sec_paciente : {}", id);
+        SecPaciente secPaciente= secPacienteService.findPersona(id);
         if(secPaciente == null){
             throw new ApplicationCustomException(MessagesConstants.ENTITY_ALREADY_EXISTS_CODE, String.format(MessagesConstants.ENTITY_NOT_EXISTS, ENITY_NAME));
         }else {

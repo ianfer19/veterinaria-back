@@ -13,4 +13,6 @@ public interface SecPacienteDAO {
     SecPaciente insert(SecPaciente entity);
 
     SecPaciente update(SecPaciente entity);
+
+    SecPaciente getByIdPersona(int nmid);
 }

@@ -21,6 +21,8 @@ public class SecPacienteDAOImpl implements SecPacienteDAO{
 
     private static final String SELECTBYID = SELECT + " WHERE id= ? ";
 
+    private static final String SELECTBYIDPERSONA = SELECT + " WHERE idper= ? ";
+
     JdbcTemplate jdbcTemplate;
 
     public SecPacienteDAOImpl(DataSource dataSource) {jdbcTemplate = new JdbcTemplate(dataSource);}
@@ -58,5 +60,10 @@ public class SecPacienteDAOImpl implements SecPacienteDAO{
                 entity.getNacimiento(),
                 entity.getFechaRegistro());
         return entity;
+    }
+
+    @Override
+    public SecPaciente getByIdPersona(int nmid) {
+        return jdbcTemplate.queryForObject(SELECTBYIDPERSONA, new SecPacienteMapper(), nmid);
     }
 }

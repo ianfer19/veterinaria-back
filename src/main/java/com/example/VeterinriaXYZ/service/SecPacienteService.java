@@ -13,4 +13,6 @@ public interface SecPacienteService {
     List<SecPaciente> findAll();
 
     SecPaciente findOne(int id);
+
+    SecPaciente findPersona(int id);
 }
