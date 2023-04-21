@@ -94,18 +94,6 @@ public class SecPacienteController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/productos/excel")
-    public ResponseEntity<String> guardarProductos(@RequestBody List<SecPaciente> pacientes) {
-        try {
-            secPacienteService.guardarPacientes(pacientes);
-
-            return new ResponseEntity<>("Productos guardados correctamente", HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("Error al guardar los productos: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
     @GetMapping("/export/all")
     public ResponseEntity<InputStreamResource> exportAllData() throws IOException {
         ByteArrayInputStream stream = secPacienteService.exportAllData();
