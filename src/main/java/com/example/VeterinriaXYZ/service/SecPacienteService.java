@@ -2,6 +2,8 @@ package com.example.VeterinriaXYZ.service;
 
 import com.example.VeterinriaXYZ.dto.SecPaciente;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.List;
 
 public interface SecPacienteService {
@@ -14,5 +16,12 @@ public interface SecPacienteService {
 
     SecPaciente findOne(int id);
 
+    boolean existePacientePorId(int id);
+
     SecPaciente findPersona(int id);
+
+    void guardarPacientes(List<SecPaciente> pacientes);
+
+    ByteArrayInputStream exportAllData() throws IOException;
+
 }

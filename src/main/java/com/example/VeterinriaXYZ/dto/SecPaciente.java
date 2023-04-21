@@ -6,6 +6,7 @@ import jakarta.persistence.Table;
 import lombok.*;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -24,12 +25,12 @@ public class SecPaciente implements Serializable {
 
 
     @JsonFormat(pattern="yyyy-MM-dd")
-    private LocalDate nacimiento;
+    private Date nacimiento;
 
     private int idPer;
 
     @JsonFormat(pattern="yyyy-MM-dd")
-    private LocalDate fechaRegistro;
+    private Date fechaRegistro;
 
     @JsonFormat
     public void setPacienteFromRs ( ResultSet rs) throws SQLException{
@@ -37,8 +38,8 @@ public class SecPaciente implements Serializable {
         nombre = rs.getString("nombre");
         especie = rs.getString("especie");
         raza = rs.getString("raza");
-        nacimiento = UtilDate.getLocalDate(rs.getDate("nacimiento"));
+        nacimiento = Date.valueOf(UtilDate.getLocalDate(rs.getDate("nacimiento")));
         idPer = rs.getInt("idper");
-        fechaRegistro = UtilDate.getLocalDate(rs.getDate("fechaRegistro"));
+        fechaRegistro = Date.valueOf(UtilDate.getLocalDate(rs.getDate("fechaRegistro")));
     }
 }

@@ -15,9 +15,9 @@ public class SecPacienteMapper implements RowMapper<SecPaciente> {
         entity.setNombre(resultSet.getString("nombre"));
         entity.setEspecie(resultSet.getString("especie"));
         entity.setRaza(resultSet.getString("raza"));
-        entity.setNacimiento(UtilDate.getLocalDate(resultSet.getDate("nacimiento")));
+        entity.setNacimiento((resultSet.getDate("nacimiento")));
         entity.setIdPer(resultSet.getInt("idper"));
-        entity.setFechaRegistro(UtilDate.getLocalDate(resultSet.getDate("fecharegistro")));
+        entity.setFechaRegistro((resultSet.getDate("fecharegistro")));
         return entity;
     }
 }

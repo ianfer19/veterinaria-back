@@ -4,7 +4,6 @@ import com.example.VeterinriaXYZ.security.config.JwtService;
 import com.example.VeterinriaXYZ.security.token.Token;
 import com.example.VeterinriaXYZ.security.token.TokenRepository;
 import com.example.VeterinriaXYZ.security.token.TokenType;
-import com.example.VeterinriaXYZ.security.user.Rol;
 import com.example.VeterinriaXYZ.security.user.User;
 import com.example.VeterinriaXYZ.security.user.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +28,7 @@ public class AuthenticationService {
             request.getPassword()
         )
     );
+
     var user = repository.findByEmail(request.getEmail())
         .orElseThrow();
     var jwtToken = jwtService.generateToken(user);
