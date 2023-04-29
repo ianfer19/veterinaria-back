@@ -13,4 +13,6 @@ public interface SecPersonaDAO {
     SecPersona insert(SecPersona entity);
     SecPersona update(SecPersona entity);
 
+    boolean existsById(int id);
+
 }

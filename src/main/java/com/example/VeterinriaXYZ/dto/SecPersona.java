@@ -19,6 +19,7 @@ public class SecPersona implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private int id;
+    private int identificacion;
     private String tipoId;
     private String nombre;
     private String ciudad;
@@ -28,6 +29,7 @@ public class SecPersona implements Serializable {
     @JsonFormat
     public void setPacienteFromRs ( ResultSet rs) throws SQLException {
         id = rs.getInt("id");
+        identificacion = rs.getInt("identificacion");
         tipoId = rs.getString("tipoid");
         nombre= rs.getString("nombre");
         ciudad= rs.getString("ciudad");

@@ -13,4 +13,6 @@ public interface SecPersonaService {
     List<SecPersona> findAll();
 
     SecPersona findOne(int id);
+
+    boolean existePersonaPorId(int id);
 }

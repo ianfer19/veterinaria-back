@@ -10,8 +10,9 @@ CREATE TABLE IF NOT EXISTS `sec_paciente` (
 )ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb3;
 
 CREATE TABLE IF NOT EXISTS `sec_persona` (
-      `id` int,
+       `id` int NOT NULL AUTO_INCREMENT,
       `nombre` varchar(30) NOT NULL,
+      `identificacion` varchar(30) NOT NULL,
       `tipoid` varchar(200) DEFAULT NULL,
       `ciudad` varchar(200) DEFAULT NULL,
       `direccion` varchar(200) DEFAULT NULL,
@@ -19,5 +20,4 @@ CREATE TABLE IF NOT EXISTS `sec_persona` (
       PRIMARY KEY (`id`)
 )ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb3;
 
-
-ALTER TABLE `sec_paciente` ADD CONSTRAINT FK_idpersona FOREIGN KEY (idper) REFERENCES `sec_persona` (id);
+ALTER TABLE `sec_paciente` ADD CONSTRAINT FK_idpersona FOREIGN KEY (idper) REFERENCES `sec_persona` (identificacion);

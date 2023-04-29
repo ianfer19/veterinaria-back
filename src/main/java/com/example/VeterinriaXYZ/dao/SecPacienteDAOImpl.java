@@ -27,8 +27,6 @@ public class SecPacienteDAOImpl implements SecPacienteDAO{
 
     private static final String SELECTBYIDPERSONA = SELECT + " WHERE idper= ? ";
 
-    private static final String EXIST ="SELECT COUNT(*) > 0 AS existe_paciente FROM sec_paciente WHERE id = ?;";
-
 
     private SessionFactory sessionFactory;
     JdbcTemplate jdbcTemplate;

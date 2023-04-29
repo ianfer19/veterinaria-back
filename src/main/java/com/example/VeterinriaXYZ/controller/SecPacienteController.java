@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -56,8 +55,9 @@ public class SecPacienteController {
     @PutMapping("/paciente")
     public ResponseEntity<ResponseMessage<SecPaciente>> updateSecPaciente(@Valid @RequestBody SecPaciente secPaciente) throws ApplicationCustomException {
         log.debug("REST request to update sec_paciente : {} ", secPaciente);
-        if(secPaciente.getId() == 0){
-            throw new ApplicationCustomException(MessagesConstants.ENTITY_ALREADY_EXISTS_CODE,String.format(MessagesConstants.ENTITY_NOT_EXISTS, ENITY_NAME));
+        boolean existeUsuario = secPacienteService.existePacientePorId(secPaciente.getId());
+        if(existeUsuario==false) {
+            return ResponseEntity.ok(new ResponseMessage<>(0, null, null));
         }
         SecPaciente result = secPacienteService.update(secPaciente);
         return ResponseEntity.ok( new ResponseMessage<>(0, null, result));
@@ -74,11 +74,24 @@ public class SecPacienteController {
     @GetMapping("/paciente/{id}")
     public ResponseEntity<ResponseMessage<SecPaciente>> getSec_usuario(@PathVariable int id) throws ApplicationCustomException {
         log.debug("REST request to get sec_paciente : {}", id);
-        SecPaciente secPaciente= secPacienteService.findOne(id);
-        if(secPaciente == null){
-            throw new ApplicationCustomException(MessagesConstants.ENTITY_ALREADY_EXISTS_CODE, String.format(MessagesConstants.ENTITY_NOT_EXISTS, ENITY_NAME));
+        boolean existeUsuario = secPacienteService.existePacientePorId(id);
+        if(existeUsuario==false){
+            return ResponseEntity.ok(new ResponseMessage<>(0,null,null));
         }else {
+            SecPaciente secPaciente= secPacienteService.findOne(id);
             return ResponseEntity.ok(new ResponseMessage<>(0,null,secPaciente));
+        }
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/paciente-exist/{id}")
+    public boolean getSec_paciente_exist(@PathVariable int id) throws ApplicationCustomException {
+        log.debug("REST request to get sec_paciente : {}", id);
+        boolean existeUsuario = secPacienteService.existePacientePorId(id);
+        if(existeUsuario==false){
+            return false;
+        }else {
+            return true;
         }
     }
 
@@ -86,10 +99,11 @@ public class SecPacienteController {
     @GetMapping("/paciente-persona/{id}")
     public ResponseEntity<ResponseMessage<SecPaciente>> getSec_usuarioPersona(@PathVariable int id) throws ApplicationCustomException {
         log.debug("REST request to get sec_paciente : {}", id);
-        SecPaciente secPaciente= secPacienteService.findPersona(id);
-        if(secPaciente == null){
+        boolean existePaciente = secPacienteService.existePacientePorId(id);
+        if(existePaciente == false){
             throw new ApplicationCustomException(MessagesConstants.ENTITY_ALREADY_EXISTS_CODE, String.format(MessagesConstants.ENTITY_NOT_EXISTS, ENITY_NAME));
         }else {
+            SecPaciente secPaciente= secPacienteService.findPersona(id);
             return ResponseEntity.ok(new ResponseMessage<>(0,null,secPaciente));
         }
     }

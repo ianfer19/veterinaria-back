@@ -47,4 +47,9 @@ public class SecPersonaServiceImpl implements SecPersonaService {
         log.debug("Request to get sec_persona : {}", id);
         return secPersonaDAO.getById(id);
     }
+
+    @Override
+    public boolean existePersonaPorId(int id) {
+        return secPersonaDAO.existsById(id);
+    }
 }

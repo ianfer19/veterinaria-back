@@ -12,6 +12,7 @@ public class SecPersonaMapper implements RowMapper<SecPersona> {
     public SecPersona mapRow(ResultSet resultSet, int i) throws SQLException {
         SecPersona entity = new SecPersona();
         entity.setId(resultSet.getInt("id"));
+        entity.setIdentificacion(resultSet.getInt("identificacion"));
         entity.setTipoId(resultSet.getString("tipoid"));
         entity.setNombre(resultSet.getString("nombre"));
         entity.setCiudad(resultSet.getString("ciudad"));
