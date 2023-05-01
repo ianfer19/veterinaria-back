@@ -63,9 +63,9 @@ public class SecPacienteServiceImpl implements SecPacienteService {
 
     @Override
     @org.springframework.transaction.annotation.Transactional(readOnly = true)
-    public SecPaciente findPersona(int id) {
+    public List<SecPaciente> findPersona(int id) {
         log.debug("Request to get sec_paciente : {}", id);
-        return secPacienteDAO.getByIdPersona(id);
+        return (List<SecPaciente>) secPacienteDAO.getByIdPersona(id);
     }
 
     @Override

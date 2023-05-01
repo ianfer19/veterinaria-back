@@ -18,7 +18,7 @@ public interface SecPacienteService {
 
     boolean existePacientePorId(int id);
 
-    SecPaciente findPersona(int id);
+    List<SecPaciente> findPersona(int id);
 
     void guardarPacientes(List<SecPaciente> pacientes);
 

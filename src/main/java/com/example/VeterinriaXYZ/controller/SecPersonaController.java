@@ -52,4 +52,11 @@ public class SecPersonaController {
         log.debug("REST request to get all persona");
         return ResponseEntity.ok( new ResponseMessage<>(0,null, secPersonaService.findAll()));
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/persona/{id}")
+    public ResponseEntity<ResponseMessage<SecPersona>> getSecPersona(@PathVariable int id) throws ApplicationCustomException {
+        log.debug("REST request to get sec_paciente : {}", id);
+            return ResponseEntity.ok(new ResponseMessage<>(0,null,secPersonaService.findOne(id)));
+        }
 }

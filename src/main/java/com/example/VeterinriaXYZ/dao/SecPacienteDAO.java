@@ -14,7 +14,7 @@ public interface SecPacienteDAO {
 
     SecPaciente update(SecPaciente entity);
 
-    SecPaciente getByIdPersona(int nmid);
+    List<SecPaciente> getByIdPersona(int nmid);
 
     void guardarPacientes(List<SecPaciente> pacientes);
 

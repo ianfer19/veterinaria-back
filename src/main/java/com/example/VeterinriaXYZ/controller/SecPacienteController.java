@@ -4,7 +4,7 @@ import com.example.VeterinriaXYZ.controller.errors.ApplicationCustomException;
 import com.example.VeterinriaXYZ.dto.SecPaciente;
 import com.example.VeterinriaXYZ.service.SecPacienteService;
 import com.example.VeterinriaXYZ.service.SecPacienteServiceImpl;
-import com.example.VeterinriaXYZ.util.MessagesConstants;
+import com.example.VeterinriaXYZ.service.SecPersonaService;
 import com.example.VeterinriaXYZ.util.ResponseMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,10 +31,12 @@ public class SecPacienteController {
     private final SecPacienteService secPacienteService;
     private final SecPacienteServiceImpl secPacienteServiceImpl;
 
+    private final SecPersonaService secPersonaService;
 
-    public SecPacienteController(SecPacienteService secPacienteService, SecPacienteServiceImpl secPacienteServiceImpl) {
+    public SecPacienteController(SecPacienteService secPacienteService, SecPacienteServiceImpl secPacienteServiceImpl, SecPersonaService secPersonaService) {
         this.secPacienteService = secPacienteService;
         this.secPacienteServiceImpl = secPacienteServiceImpl;
+        this.secPersonaService = secPersonaService;
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
@@ -97,15 +99,9 @@ public class SecPacienteController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/paciente-persona/{id}")
-    public ResponseEntity<ResponseMessage<SecPaciente>> getSec_usuarioPersona(@PathVariable int id) throws ApplicationCustomException {
+    public ResponseEntity<ResponseMessage<List<SecPaciente>>> getSec_usuarioPersona(@PathVariable int id) throws ApplicationCustomException {
         log.debug("REST request to get sec_paciente : {}", id);
-        boolean existePaciente = secPacienteService.existePacientePorId(id);
-        if(existePaciente == false){
-            throw new ApplicationCustomException(MessagesConstants.ENTITY_ALREADY_EXISTS_CODE, String.format(MessagesConstants.ENTITY_NOT_EXISTS, ENITY_NAME));
-        }else {
-            SecPaciente secPaciente= secPacienteService.findPersona(id);
-            return ResponseEntity.ok(new ResponseMessage<>(0,null,secPaciente));
-        }
+            return ResponseEntity.ok(new ResponseMessage<>(0,null,secPacienteService.findPersona(id)));
     }
 
     @GetMapping("/export/all")

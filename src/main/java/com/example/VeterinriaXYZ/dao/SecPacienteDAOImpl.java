@@ -69,8 +69,8 @@ public class SecPacienteDAOImpl implements SecPacienteDAO{
     }
 
     @Override
-    public SecPaciente getByIdPersona(int nmid) {
-        return jdbcTemplate.queryForObject(SELECTBYIDPERSONA, new SecPacienteMapper(), nmid);
+    public List<SecPaciente> getByIdPersona(int nmid) {
+        return jdbcTemplate.query(SELECTBYIDPERSONA, new SecPacienteMapper(), nmid);
     }
 
     public void guardarPacientes (List<SecPaciente> pacientes){
